@@ -23,13 +23,13 @@ Last edit:3/16/20
 <body>
 <!-- simple header consisting of logo title and navigation-->
 <div class = "header">
-<img src="\images\ta.png" alt="TA logo">
+<img src="images\ta.png" alt="TA logo">
 <h1> Factory Status</h1>
 	<nav>
 		<ul>
-			<li><a href="index.php">Home</a></li>
-			<li><a href="../../registration/cnc1.php">CNC</a></li>
-			<li><a href="../../registration/cnc2.php">CNC Lathe</a></li>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="cnc1.php">CNC</a></li>
+			<li><a href="cnc2.html">CNC Lathe</a></li>
 			<li><a href="/registration/LiveGraph.php">Force Gauge</a></li>
 		</ul>
 	</nav>
@@ -40,29 +40,6 @@ If the button is clicked it uses the get method to give the generic page
 info on what page was selected-->
 <div class ="main_disp">
 <h2> Please Select The Job Number:</h2>
-<?php
 
-	$link = mysqli_connect("localhost","webhost","pass","Demo_OEE");
-	if($link){
-	
-		$query ="Show Tables;";
-		$results=mysqli_query($link,$query);
-		while($row=mysqli_fetch_row($results)){
-			if(stripos($row[0],"cnc")===false){
-				echo "<form action='genericFile.php' method='get'>";
-				echo "<button>
-				<input type='hidden' name='jobNum' value='".$row[0]."'>"
-				.str_replace("_","",$row[0])."</input></button>";
-				echo "</form>";
-			}
-		}
-	}
-	
-	echo "</div><footer>";
-	echo "<sub> Edited by Elijsha Baetiong<br>
-		update: 3/11/20
-		<br> Alpha 1.0</sub>";
-	echo "</footer>";
-?>
 </body>
 </html>

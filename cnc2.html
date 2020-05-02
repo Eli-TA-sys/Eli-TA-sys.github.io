@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- This should be pratically identically to CNC1.PHP
+please refer to that one for more information.
+Created By: Elijsha Baetiong
+Last Edited: 3/16/20
+-->
+<html>
+<head>
+<title>CNC 2 data</title>
+<link rel="stylesheet" href="CSS files\cnc.css"/>
+<link rel="shortcut icon" href="images\icon1.ico"/>
+<!---<meta http-equiv="refresh" content="30">--->
+</head>
+<body bgcolor="white">
+<div class ="header">
+<img src="images/ta.png" alt="TA logo">
+<h1>CNC Lathe</h1>
+<nav>
+	<ul>
+	<li><a href="index.php">Home</a></li>
+	<li><a href="cnc1.php">CNC</a></li>
+	<li><a href="cnc2.php">CNC Lathe</a></li>
+	<li><a href="LiveGraph.php">Force Gauge</a></li>
+	</ul>
+</nav>
+
+</div>
+
+
+
+<script type="text/javascript"  src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<div class="display1">
+<div class="graphs" style="margin-right:15%;display:inline-block;mpostion:relative;height: 10; width: 40vw"> 
+<canvas id="avab"></canvas>
+</div>
+<div class="running" style="display:inline-block;position:relative;height:10; width:40vw">
+<canvas id="run" style="display:center"></canvas>
+</div>
+<div class="upTime" align="center" style="margin:auto ;position:relative; height:10; width:40vw">
+<canvas id="Up"></canvas>
+</div>
+</div>
+<script type="text/javascript" src="Js_Files/cnc2.js"></script>
+<div class="form" align="center">
+<form action="#" method="post">
+<select id="time" name="mintues" align="Right">                      
+<option value="5">--Select time option--</option>
+<option value="1">1</option>
+<option value="5">5</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="30">30</option>
+<option value="60">60</option>
+</select>
+Enter start date:
+<input type="date" name="date"/>
+Enter a start time:
+<input type="time" name="time"/>
+	<p>Enter stop date:
+	<input type="date" name="endDate"/>
+	Enter stop time:
+	<input type="time" name="endTime"/>
+	<input type="submit" name="submit" value="Submit" />
+</form>
+</div>
+<div class="data">
+
+</div>
+
+</body>
+</html>
