@@ -11,13 +11,14 @@
  *******************************************************************/
 
 //create websocket
-var socket= new WebSocket('ws://192.168.206.28:8765');
+//var socket= new WebSocket('ws://192.168.206.28:8765');
 
 var liveGraph;
 var dps = []; // dataPoints
 var index=[];
 var fullData;
 var dataNum=0;
+var starter;
 
 //This function works as soon as the page gets loaded
 //It creates the initial chart
@@ -72,13 +73,31 @@ liveGraph = new Chart(chart, {
 //These create click listeners for the respectective button and applys
 //a certain function to them
 document.getElementById("start").addEventListener("click",start);
-document.getElementById("stop").addEventListener("click",stop);
+document.getElementById("stop").addEventListener("click", stop);
 document.getElementById("reset").addEventListener("click",resetGraph);
+//this function updates the chart by pushing more data
+//then refreshing the chart
+var updateChart = function (chart,data) {
+
+	chart.data.datasets.forEach((dataset) => {
+        	dataset.data.push(data);
+        });
+	chart.update();
+
+}
+
+function randomnData(){
+	var x=Math.floor((Math.random() * 1000) + 1);
+	index.push(dataNum++);
+	console.log('running');
+	updateChart(liveGraph,x);
+}
 
 //This sends a start signal to tell the socket to start providing data
 function start(){
-	socket.send('start');
-
+	 starter = setInterval(randomnData, 100);
+	
+	
 }
 
 /*as the function implies it resets the graph
@@ -132,7 +151,7 @@ function resetGraph(){
 }
 //this function sends a stop signal to tell the socket No more data
 function stop(){
-	socket.send("stop");
+	clearTimeout(starter)
 	liveGraph.update();
 }
 
@@ -158,15 +177,5 @@ socket.onerror = function(err){
 	alert("Error occured!");
 }
 
-//this function updates the chart by pushing more data
-//then refreshing the chart
-var updateChart = function (chart,data) {
-
-	chart.data.datasets.forEach((dataset) => {
-        	dataset.data.push(data);
-        });
-	chart.update();
-
-}
 
 }
