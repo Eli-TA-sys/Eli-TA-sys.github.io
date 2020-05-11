@@ -12,16 +12,27 @@ window.onload = function () {
 	var powerTime=[];
 	var avalibility=[];
 	var d = new Date(); 
-	var date= d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-	var curTime =d.getHours() + ":" + d.getMinutes();
-	var datetime=date+' '+curTime;
-	
-	var i=0;
-	
+	var date= (d.getMonth()+1)+'-'+d.getDate()+'-'+d.getFullYear();
+	var datetime
+	var mintues=0;
+	var hour=0;
 	//next step is create my own clock incrementer
 		
 	//for the size of the data push the correct information into their respective arrays
 	for(i=0;i<50;i++){
+		mintues=i*5%60;
+		if(i%12==0 & i!=0){
+			hour+=1;
+			if(hour>12){
+				hour=1;
+			}
+		}
+		if(mintues < 10){
+			datetime=date+' '+hour+':0'+mintues;
+		}
+		else{
+			datetime=date+' '+hour+':'+mintues;
+		}
 		time.push(datetime);
 		//get the motion time from the start to the end
 		if(i>0){
