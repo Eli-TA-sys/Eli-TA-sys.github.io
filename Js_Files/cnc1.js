@@ -6,25 +6,33 @@
  *Created By: Elijsha Baetiong                       *
  *Last Edited: 3/16/20                               *
  * ***************************************************/
-$(document).ready(function(){
-	$.ajax({
-	url:"phpFiles/cnc1Graphing.php",
-	method: "GET",
-	success: function(data){
-	
-	var time =[];
+window.onload = function () {
+	var time = []
 	var motionTime = [];
 	var powerTime=[];
 	var avalibility=[];
-	var mydata=JSON.parse(data);
-	var i=0;	
+	var d = new Date(); 
+	var date= d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+	var curTime =d.getHours() + ":" + d.getMinutes();
+	var datetime=date+' '+curTime;
+	
+	var i=0;
+	
+	//next step is create my own clock incrementer
 		
 	//for the size of the data push the correct information into their respective arrays
-	for(i=0;i<mydata.length;i++){
-		time.push(mydata[i].timestamp);
+	for(i=0;i<50;i++){
+		time.push(datetime);
 		//get the motion time from the start to the end
-		motionTime.push(mydata[i].motionTime - mydata[0].motionTime);
-		powerTime.push(mydata[i].powerOnTime - mydata[0].powerOnTime);
+		if(i>0){
+		motionTime.push(Math.floor(Math.random() * 2) ? i-1 : i);
+		
+		console.log(Math.floor(Math.random() * 2));
+		}
+		else{
+			motionTime.push(i);
+		}
+		powerTime.push(i);
 		//probably setup avalibility
 		if(i!=0)
 			avalibility.push(motionTime[i]/powerTime[i]*100);
@@ -165,12 +173,4 @@ $(document).ready(function(){
 		}
 
 	});
-
-	},
-	// if we get an error log the data to view if it is correct
-	error: function(data){
-		console.log(data);
-	}
-	
-	});
-});
+}
