@@ -33,10 +33,10 @@ window.onload = function () {
 			}
 		}
 		if(mintues < 10){
-			datetime=date+' '+hour+':0'+mintues;
+			datetime=date+' '+(hour%13)+':0'+mintues+(hour > 12 ? ' PM':' AM');
 		}
 		else{
-			datetime=date+' '+hour+':'+mintues;
+			datetime=date+' '+(hour%13)+':'+mintues+(hour > 12 ? ' PM':' AM');
 		}
 		time.push(datetime);
 		//get the motion time from the start to the end
