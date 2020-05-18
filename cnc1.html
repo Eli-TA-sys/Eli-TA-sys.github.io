@@ -27,7 +27,28 @@ Last Edited: 3/16/20 -->
 <!--this displays the status of the two CNC's -->
 
 <section class="machineInfo">
-<?PHP include 'phpFiles/statusCheck.php'?>
+<!--
+<?PHP include 'phpFiles/statusCheck.php'?> -->
+
+<table>
+<tr>
+	<th>Machine:</th>
+	<th>Status:</th>
+</tr>
+<tr>
+	<td>CNC</td>
+	<td id="cnc1" bgcolor="lime" style="border:2px solid black">Running</td>
+</tr>
+<tr>
+	<td>CNC Lathe</td>
+	<td id="cnc2" bgcolor="yellow" style="border:2px solid black">Machine Idle</td>
+</tr>
+<tr>
+	<td>PLC</td>
+	<td id="plc" bgcolor="red" style="border:2px solid black">Not Running</td>
+</tr>
+</table>
+<script type="text/javascript" src="Js_Files/cncStatusUpdate.js">
 </section>
 <!-- Include all the javascript necessary to do the graphs 
 also set up the graphs for display-->
